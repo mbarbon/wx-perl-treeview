@@ -18,7 +18,7 @@ use Wx;
 use strict;
 use base qw(Wx::EvtHandler);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Wx::Event qw(EVT_TREE_ITEM_EXPANDING);
 
@@ -43,7 +43,7 @@ sub new {
     # FIXME work around wxWidgets bug :-(
     my $target = Wx::wxMSW || Wx::wxVERSION >= 2.009 ?
                      $self : $tree;
-    EVT_TREE_ITEM_EXPANDING( $self, $tree,
+    EVT_TREE_ITEM_EXPANDING( $target, $tree,
                              sub { $self->_on_item_expanding( $_[1]->GetItem );
                                    $_[1]->Skip;
                                    } );
